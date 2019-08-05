@@ -1,10 +1,11 @@
 export enum Colors {
   primaryColor = "darkviolet",
-  secondaryColor = "darkkhaki",
+  secondaryColor = "darkgoldenrod",
   thirdColor = "navajowhite",
   successColor = "green",
   errorColor = "red",
   warningColor = "yellow",
-  dirtyWhite = "dirtywhite",
-  white = "white"
+  grey = "grey",
+  white = "white",
+  darkgoldenrod = "darkgoldenrod"
 }
