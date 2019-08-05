@@ -34,21 +34,16 @@ const router = {
 
 const navigationOptions = {
   tabBarOptions: {
-    showIcon: true,
     activeTintColor: Colors.primaryColor,
+    inactiveTintColor: Colors.grey,
     indicatorStyle: {
-      backgroundColor: Colors.primaryColor
+      backgroundColor: Colors.darkgoldenrod
     },
     style: {
       padding: 10,
       height: Platform.OS === "ios" ? 60 : "auto",
-      backgroundColor: Colors.thirdColor,
+      backgroundColor: Colors.white,
       fontSize: 18,
-      shadowColor: "rgba(0, 0, 0, 0.24)",
-      shadowOffset: {
-        width: 0,
-        height: 3
-      },
       shadowRadius: 6,
       shadowOpacity: 1
     }
