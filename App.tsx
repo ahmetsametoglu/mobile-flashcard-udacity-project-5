@@ -4,24 +4,29 @@ import StackNav from "./src/navigators/StackNav";
 
 import Constants from "expo-constants";
 import { Colors } from "./src/utils/color";
+import DecksContextProvider from "./src/contexts/DecksContext";
 
 const App = () => {
+  console.log("[App]: init");
+
   return (
-    <View style={{ flex: 1 }}>
-      <View
-        style={{
-          backgroundColor: Colors.thirdColor,
-          height: Constants.statusBarHeight
-        }}
-      >
-        <StatusBar
-          translucent
-          backgroundColor={Colors.thirdColor}
-          barStyle="light-content"
-        />
+    <DecksContextProvider>
+      <View style={{ flex: 1 }}>
+        <View
+          style={{
+            backgroundColor: Colors.thirdColor,
+            height: Constants.statusBarHeight
+          }}
+        >
+          <StatusBar
+            translucent
+            backgroundColor={Colors.thirdColor}
+            barStyle="light-content"
+          />
+        </View>
+        <StackNav />
       </View>
-      <StackNav />
-    </View>
+    </DecksContextProvider>
   );
 };
 
