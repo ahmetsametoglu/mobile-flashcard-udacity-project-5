@@ -6,7 +6,7 @@ import { IDeck } from "./../models/deck.model";
 let deckList: IDeck[] = [
   {
     _id: "1",
-    title: "desks 1",
+    title: "deck 1",
     cardList: [
       { _id: "11", question: "You are developer", answer: Answer.Correct },
       {
@@ -23,7 +23,7 @@ let deckList: IDeck[] = [
   },
   {
     _id: "2",
-    title: "desk 2",
+    title: "deck 2",
     cardList: [
       { _id: "21", question: "You are developer", answer: Answer.Correct },
       {
@@ -37,13 +37,28 @@ let deckList: IDeck[] = [
         answer: Answer.Wrong
       }
     ]
+  },
+  {
+    _id: "3",
+    title: "deck 3",
+    cardList: []
+  },
+  {
+    _id: "4",
+    title: "deck 4",
+    cardList: []
+  },
+  {
+    _id: "5",
+    title: "deck 5",
+    cardList: []
   }
 ];
 
 export class DeckService {
   static getDeckList(): Promise<IDeck[]> {
     return new Promise(res => {
-      setTimeout(() => res({ ...deckList }), 1000);
+      setTimeout(() => res(deckList), 1000);
     });
   }
 
