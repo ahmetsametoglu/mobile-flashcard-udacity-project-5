@@ -21,15 +21,17 @@ interface IDecksAction {
 //#endregion models
 
 export class DecksAction {
-  public static fetchDeckList = async (): Promise<IDecksAction> => {
+  constructor(private dispatch: Dispatch<IDecksAction>) {}
+
+  public fetchDeckList = async (): Promise<void> => {
     const deckList = await DeckService.getDeckList();
 
     console.log("[Decks Action]: fetchDeckList");
 
-    return {
+    return this.dispatch({
       type: ActionType.FetchDeckList,
       payload: { deckList: deckList }
-    };
+    });
   };
 }
 

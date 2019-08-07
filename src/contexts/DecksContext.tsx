@@ -15,7 +15,7 @@ const DecksContextProvider = props => {
 
   useEffect(() => {
     console.log("[DecksContext]: useEffect fetchDeckList");
-    DecksAction.fetchDeckList().then(action => dispatch(action)); // fetching data
+    new DecksAction(dispatch).fetchDeckList(); // fetching data
   }, []);
 
   return (
