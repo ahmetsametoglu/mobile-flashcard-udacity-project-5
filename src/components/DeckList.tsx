@@ -1,19 +1,19 @@
-import React, { FC, useContext } from "react";
+import React, { FC } from "react";
 import { FlatList } from "react-native";
-import { DecksContext } from "../contexts/DecksContext";
 import { INavigationProp } from "../models/props.model";
 import DeckItem from "./DeckItem";
+import { useStateValue } from "../contexts/StateContext";
 
 interface IProps extends INavigationProp {}
 const DeckList: FC<IProps> = props => {
   console.log("[DeckList component]: init");
+  const { state } = useStateValue();
 
   const { navigation } = props;
-  const context = useContext(DecksContext);
 
   return (
     <FlatList
-      data={context.deckList.map(d => {
+      data={state.deckList.map(d => {
         return { ...d, key: d._id };
       })}
       renderItem={({ item }) => (
