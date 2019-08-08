@@ -1,14 +1,7 @@
 import React, { FC, useReducer } from "react";
-import {
-  View,
-  Text,
-  Button,
-  StyleSheet,
-  TextStyle,
-  ViewStyle
-} from "react-native";
+import { View, Text, StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { INavigationProp } from "../models/props.model";
-import { DecksReducer, initialDecksState } from "../store/DecksStore";
+import { decksReducer, initialDecksState } from "../store/DecksStore";
 import { NavigationPages } from "../navigators/NavigationPages";
 import { TouchableHighlight } from "react-native-gesture-handler";
 import { Colors } from "../utils/color";
@@ -17,31 +10,19 @@ interface IProps extends INavigationProp {}
 const DeckMenu: FC<IProps> = props => {
   const { navigation } = props;
   const { deckId } = navigation.state.params;
-  const [state] = useReducer(DecksReducer, initialDecksState);
+  const [state] = useReducer(decksReducer, initialDecksState);
 
   const selectedDeck = state.deckList.find(d => d._id == deckId);
 
   return (
     <View style={{ flex: 1, margin: 40 }}>
-      <View
-        style={{
-          flex: 5,
-          justifyContent: "center",
-          alignItems: "center"
-        }}
-      >
+      <View style={styles.infoSection}>
         <Text style={styles.title}>{selectedDeck.title}</Text>
         <Text style={styles.description}>{`${
           selectedDeck.cardList.length
         } cards`}</Text>
       </View>
-      <View
-        style={{
-          flex: 3,
-          justifyContent: "center",
-          alignItems: "center"
-        }}
-      >
+      <View style={styles.buttonSection}>
         <TouchableHighlight
           style={[styles.button, { backgroundColor: Colors.white }]}
           onPress={() => navigation.push(NavigationPages.AddCard)}
@@ -68,11 +49,23 @@ const DeckMenu: FC<IProps> = props => {
 };
 
 const styles = StyleSheet.create<{
+  infoSection: ViewStyle;
+  buttonSection: ViewStyle;
   title: TextStyle;
   description: TextStyle;
   button: ViewStyle;
   buttonLabel: TextStyle;
 }>({
+  infoSection: {
+    flex: 5,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  buttonSection: {
+    flex: 3,
+    justifyContent: "center",
+    alignItems: "center"
+  },
   title: {
     fontSize: 40,
     marginBottom: 15,
