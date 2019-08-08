@@ -1,4 +1,6 @@
 export enum NavigationPages {
   Home = "Home",
-  DeckMenu = "DeckMenu"
+  DeckMenu = "DeckMenu",
+  Quiz = "Quiz",
+  AddCard = "AddCard"
 }
