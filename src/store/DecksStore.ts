@@ -11,6 +11,7 @@ export interface IDecksState {
 
 interface IDeckPayload {
   deckList?: IDeck[];
+  newDeck?: IDeck;
 }
 
 interface IDecksAction {
@@ -23,7 +24,7 @@ interface IDecksAction {
 export class DecksAction {
   constructor(private dispatch: Dispatch<IDecksAction>) {}
 
-  public fetchDeckList = async (): Promise<void> => {
+  public async fetchDeckList() {
     const deckList = await DeckService.getDeckList();
 
     console.log("[Decks Action]: fetchDeckList");
@@ -32,12 +33,21 @@ export class DecksAction {
       type: ActionType.FetchDeckList,
       payload: { deckList: deckList }
     });
-  };
+  }
+
+  public async addDeck(deckTitle: string) {
+    const newDeck = await DeckService.addDeck(deckTitle);
+    console.log("newDeck:", newDeck);
+    return this.dispatch({
+      type: ActionType.AddDeckToList,
+      payload: { newDeck: newDeck }
+    });
+  }
 }
 
 export const initialDecksState: IDecksState = { deckList: [] };
 
-export const DecksReducer: Reducer<IDecksState, IDecksAction> = (
+export const decksReducer: Reducer<IDecksState, IDecksAction> = (
   state = initialDecksState,
   action
 ) => {
@@ -46,11 +56,17 @@ export const DecksReducer: Reducer<IDecksState, IDecksAction> = (
   switch (action.type) {
     case ActionType.FetchDeckList:
       const deckList = action.payload.deckList;
+
       if (!!deckList) {
         state.deckList = deckList;
       }
       return { ...state };
-    default:
-      throw new Error();
+
+    case ActionType.AddDeckToList:
+      const newDeck = action.payload.newDeck;
+      if (!!newDeck) {
+        state.deckList = [...state.deckList, newDeck];
+      }
+      return { ...state };
   }
 };
