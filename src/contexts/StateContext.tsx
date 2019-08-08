@@ -6,10 +6,13 @@ import {
   DecksAction
 } from "../store/DecksStore";
 
-export const StateContext = createContext<{
+interface IStateContext {
   state: IDecksState;
   deckAction: DecksAction;
-}>(null);
+}
+
+export const StateContext = createContext<IStateContext>(null);
+export const useStateValue = () => useContext(StateContext);
 
 const StateContextProvider = props => {
   console.log("[StateContext]: init");
@@ -30,5 +33,3 @@ const StateContextProvider = props => {
 };
 
 export default StateContextProvider;
-
-export const useStateValue = () => useContext(StateContext);
