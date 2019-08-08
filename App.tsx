@@ -4,13 +4,13 @@ import StackNav from "./src/navigators/StackNav";
 
 import Constants from "expo-constants";
 import { Colors } from "./src/utils/color";
-import DecksContextProvider from "./src/contexts/DecksContext";
+import StateContextProvider from "./src/contexts/StateContext";
 
 const App = () => {
   console.log("[App]: init");
 
   return (
-    <DecksContextProvider>
+    <StateContextProvider>
       <View style={{ flex: 1 }}>
         <View
           style={{
@@ -26,7 +26,7 @@ const App = () => {
         </View>
         <StackNav />
       </View>
-    </DecksContextProvider>
+    </StateContextProvider>
   );
 };
 
