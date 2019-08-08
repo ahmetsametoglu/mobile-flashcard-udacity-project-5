@@ -7,5 +7,6 @@ export enum Colors {
   warningColor = "yellow",
   grey = "grey",
   white = "white",
-  darkgoldenrod = "darkgoldenrod"
+  darkgoldenrod = "darkgoldenrod",
+  black = "black"
 }
