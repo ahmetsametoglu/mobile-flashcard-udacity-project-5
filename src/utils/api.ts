@@ -37,28 +37,13 @@ let deckList: IDeck[] = [
         answer: Answer.Wrong
       }
     ]
-  },
-  {
-    _id: "3",
-    title: "deck 3",
-    cardList: []
-  },
-  {
-    _id: "4",
-    title: "deck 4",
-    cardList: []
-  },
-  {
-    _id: "5",
-    title: "deck 5",
-    cardList: []
   }
 ];
 
 export class DeckService {
   static getDeckList(): Promise<IDeck[]> {
     return new Promise(res => {
-      setTimeout(() => res(deckList), 1000);
+      setTimeout(() => res([...deckList]), 1000);
     });
   }
 
@@ -72,7 +57,7 @@ export class DeckService {
         };
 
         deckList.push(newDeck);
-        res(newDeck);
+        res({ ...newDeck });
       }, 1000);
     });
   }
@@ -102,7 +87,7 @@ export class DeckService {
         card._id = uuidv4();
         deckList[deckIndex].cardList.push(card);
 
-        res(card);
+        res({ ...card });
       }, 1000);
     });
   }
