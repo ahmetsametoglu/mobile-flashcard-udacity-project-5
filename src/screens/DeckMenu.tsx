@@ -1,50 +1,76 @@
-import React, { FC, useReducer } from "react";
+import React, { FC } from "react";
 import { View, Text, StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { INavigationProp } from "../models/props.model";
-import { decksReducer, initialDecksState } from "../store/DecksStore";
 import { NavigationPages } from "../navigators/NavigationPages";
 import { TouchableHighlight } from "react-native-gesture-handler";
 import { Colors } from "../utils/color";
+import { useStateValue } from "../contexts/StateContext";
+import { useAppValue } from "../contexts/AppContext";
 
 interface IProps extends INavigationProp {}
 const DeckMenu: FC<IProps> = props => {
+  const { state, deckAction } = useStateValue();
+  const { appAction } = useAppValue();
+
   const { navigation } = props;
   const { deckId } = navigation.state.params;
-  const [state] = useReducer(decksReducer, initialDecksState);
 
   const selectedDeck = state.deckList.find(d => d._id == deckId);
 
+  const onDeleteDeck = () => {
+    appAction.showLoading("removing...");
+    deckAction
+      .removeDeck(deckId)
+      .then(_ => {
+        appAction.hideLoading();
+        props.navigation.navigate(NavigationPages.Home);
+      })
+      .catch(_ => {
+        appAction.hideLoading();
+      });
+  };
+
   return (
-    <View style={{ flex: 1, margin: 40 }}>
-      <View style={styles.infoSection}>
-        <Text style={styles.title}>{selectedDeck.title}</Text>
-        <Text style={styles.description}>{`${
-          selectedDeck.cardList.length
-        } cards`}</Text>
+    !!selectedDeck && (
+      <View style={{ flex: 1, margin: 40 }}>
+        <View style={styles.infoSection}>
+          <Text style={styles.title}>{selectedDeck.title}</Text>
+          <Text style={styles.description}>{`${
+            selectedDeck.cardList.length
+          } cards`}</Text>
+        </View>
+        <View style={styles.buttonSection}>
+          <TouchableHighlight
+            style={[styles.button, { backgroundColor: Colors.white }]}
+            onPress={() => navigation.push(NavigationPages.AddCard)}
+          >
+            <Text style={[styles.buttonLabel, { color: Colors.black }]}>
+              Add Card
+            </Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            style={[styles.button, { backgroundColor: Colors.black }]}
+            onPress={() =>
+              navigation.push(NavigationPages.Quiz, {
+                title: selectedDeck.title
+              })
+            }
+          >
+            <Text style={[styles.buttonLabel, { color: Colors.white }]}>
+              Start Quiz
+            </Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            style={[styles.button, { borderColor: Colors.white }]}
+            onPress={onDeleteDeck}
+          >
+            <Text style={[styles.buttonLabel, { color: Colors.red }]}>
+              Delete Deck
+            </Text>
+          </TouchableHighlight>
+        </View>
       </View>
-      <View style={styles.buttonSection}>
-        <TouchableHighlight
-          style={[styles.button, { backgroundColor: Colors.white }]}
-          onPress={() => navigation.push(NavigationPages.AddCard)}
-        >
-          <Text style={[styles.buttonLabel, { color: Colors.black }]}>
-            Add Card
-          </Text>
-        </TouchableHighlight>
-        <TouchableHighlight
-          style={[styles.button, { backgroundColor: Colors.black }]}
-          onPress={() =>
-            navigation.push(NavigationPages.Quiz, {
-              title: selectedDeck.title
-            })
-          }
-        >
-          <Text style={[styles.buttonLabel, { color: Colors.white }]}>
-            Start Quiz
-          </Text>
-        </TouchableHighlight>
-      </View>
-    </View>
+    )
   );
 };
 
@@ -58,6 +84,7 @@ const styles = StyleSheet.create<{
 }>({
   infoSection: {
     flex: 5,
+    paddingBottom: 90,
     justifyContent: "center",
     alignItems: "center"
   },
@@ -79,7 +106,6 @@ const styles = StyleSheet.create<{
     flexDirection: "row",
     borderWidth: 1,
     height: 60,
-    borderColor: Colors.black,
     borderRadius: 5,
     margin: 8,
     width: "100%"
