@@ -12,6 +12,7 @@ export interface IDecksState {
 interface IDeckPayload {
   deckList?: IDeck[];
   newDeck?: IDeck;
+  removeDeckId?: string;
 }
 
 interface IDecksAction {
@@ -43,6 +44,16 @@ export class DecksAction {
       payload: { newDeck: newDeck }
     });
   }
+
+  public async removeDeck(id: string) {
+    const isProcessSuccess = await DeckService.removeDeck(id);
+
+    if (isProcessSuccess)
+      return this.dispatch({
+        type: ActionType.RemoveDeck,
+        payload: { removeDeckId: id }
+      });
+  }
 }
 
 export const initialDecksState: IDecksState = { deckList: [] };
@@ -66,6 +77,16 @@ export const decksReducer: Reducer<IDecksState, IDecksAction> = (
       const newDeck = action.payload.newDeck;
       if (!!newDeck) {
         state.deckList = [...state.deckList, newDeck];
+      }
+      return { ...state };
+
+    case ActionType.RemoveDeck:
+      const removeDeckId = action.payload.removeDeckId;
+      const removeDeckIndex = state.deckList.findIndex(
+        d => d._id === removeDeckId
+      );
+      if (removeDeckIndex !== -1) {
+        state.deckList.splice(removeDeckIndex, 1);
       }
       return { ...state };
   }
