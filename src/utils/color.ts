@@ -8,5 +8,7 @@ export enum Colors {
   grey = "grey",
   white = "white",
   darkgoldenrod = "darkgoldenrod",
-  black = "black"
+  black = "black",
+  red = "red",
+  loadingBackRoundColor = "rgba(246, 246, 235, 0.8)"
 }
