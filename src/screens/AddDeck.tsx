@@ -23,16 +23,20 @@ const AddDeck: FC<IProps> = props => {
 
   const onSubmitPage = () => {
     console.log("onSubmitPage");
-    appAction.showLoading("saving...");
-    deckAction
-      .addDeck(deckTitle)
-      .then(_ => {
-        appAction.hideLoading();
-        props.navigation.navigate("Decks");
-      })
-      .catch(_ => {
-        appAction.hideLoading();
-      });
+
+    if (deckTitle !== "") {
+      appAction.showLoading("saving...");
+      deckAction
+        .addDeck(deckTitle)
+        .then(_ => {
+          appAction.hideLoading();
+          setDeckTitle("");
+          props.navigation.navigate("Decks");
+        })
+        .catch(_ => {
+          appAction.hideLoading();
+        });
+    }
   };
 
   return (
@@ -49,6 +53,7 @@ const AddDeck: FC<IProps> = props => {
             placeholder="Deck Title"
             placeholderTextColor={Colors.grey}
             onSubmitEditing={onSubmitPage}
+            value={deckTitle}
             onChangeText={value => {
               setDeckTitle(value);
             }}
