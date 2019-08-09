@@ -3,5 +3,7 @@ export enum ActionType {
   AddDeckToList,
   RemoveDeck,
   AddCardToDeck,
-  RemoveCard
+  RemoveCard,
+  ShowLoading,
+  HideLoading
 }
