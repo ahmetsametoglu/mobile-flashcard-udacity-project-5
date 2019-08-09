@@ -18,7 +18,7 @@ const DeckMenu: FC<IProps> = props => {
   const selectedDeck = state.deckList.find(d => d._id == deckId);
 
   const onDeleteDeck = () => {
-    appAction.showLoading("removing...");
+    appAction.showLoading("deleting...");
     deckAction
       .removeDeck(deckId)
       .then(_ => {
@@ -41,6 +41,7 @@ const DeckMenu: FC<IProps> = props => {
         </View>
         <View style={styles.buttonSection}>
           <TouchableHighlight
+            underlayColor={Colors.thirdColor}
             style={[styles.button, { backgroundColor: Colors.white }]}
             onPress={() => navigation.push(NavigationPages.AddCard)}
           >
@@ -49,6 +50,7 @@ const DeckMenu: FC<IProps> = props => {
             </Text>
           </TouchableHighlight>
           <TouchableHighlight
+            underlayColor={Colors.thirdColor}
             style={[styles.button, { backgroundColor: Colors.black }]}
             onPress={() =>
               navigation.push(NavigationPages.Quiz, {
@@ -61,6 +63,7 @@ const DeckMenu: FC<IProps> = props => {
             </Text>
           </TouchableHighlight>
           <TouchableHighlight
+            underlayColor={Colors.thirdColor}
             style={[styles.button, { borderColor: Colors.white }]}
             onPress={onDeleteDeck}
           >
