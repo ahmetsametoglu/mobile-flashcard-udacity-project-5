@@ -14,6 +14,7 @@ import { Colors } from "../utils/color";
 import { INavigationProp } from "../models/props.model";
 import { useStateValue } from "../contexts/StateContext";
 import { useAppValue } from "../contexts/AppContext";
+import { NavigationPages } from "../navigators/NavigationPages";
 
 interface IProps extends INavigationProp {}
 const AddDeck: FC<IProps> = props => {
@@ -28,10 +29,14 @@ const AddDeck: FC<IProps> = props => {
       appAction.showLoading("saving...");
       deckAction
         .addDeck(deckTitle)
-        .then(_ => {
+        .then(newDeck => {
           appAction.hideLoading();
           setDeckTitle("");
           props.navigation.navigate("Decks");
+          props.navigation.push(NavigationPages.DeckMenu, {
+            deckId: newDeck._id,
+            title: newDeck.title
+          });
         })
         .catch(_ => {
           appAction.hideLoading();
@@ -58,7 +63,11 @@ const AddDeck: FC<IProps> = props => {
               setDeckTitle(value);
             }}
           />
-          <TouchableHighlight style={styles.button} onPress={onSubmitPage}>
+          <TouchableHighlight
+            style={styles.button}
+            onPress={onSubmitPage}
+            underlayColor={Colors.thirdColor}
+          >
             <Text style={{ color: Colors.white, fontSize: 20 }}>Submit</Text>
           </TouchableHighlight>
         </View>
