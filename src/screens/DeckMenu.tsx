@@ -36,7 +36,7 @@ const DeckMenu: FC<IProps> = props => {
         <View style={styles.infoSection}>
           <Text style={styles.title}>{selectedDeck.title}</Text>
           <Text style={styles.description}>{`${
-            selectedDeck.cardList.length
+            selectedDeck.cards.length
           } cards`}</Text>
         </View>
         <View style={styles.buttonSection}>
@@ -54,7 +54,8 @@ const DeckMenu: FC<IProps> = props => {
             style={[styles.button, { backgroundColor: Colors.black }]}
             onPress={() =>
               navigation.push(NavigationPages.Quiz, {
-                title: selectedDeck.title
+                title: selectedDeck.title,
+                id: selectedDeck._id
               })
             }
           >

@@ -28,7 +28,7 @@ const DeckItem: FC<IProps> = props => {
       }}
     >
       <Text style={styles.title}>{deck.title}</Text>
-      <Text style={styles.cardNumber}>{`${deck.cardList.length} cards`}</Text>
+      <Text style={styles.cardNumber}>{`${deck.cards.length} cards`}</Text>
     </TouchableOpacity>
   );
 };

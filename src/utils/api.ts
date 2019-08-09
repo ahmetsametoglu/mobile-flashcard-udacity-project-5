@@ -1,40 +1,34 @@
 const uuidv4 = require("uuid/v4");
 
-import { Answer, ICard } from "./../models/card.model";
+import { ICard } from "./../models/card.model";
 import { IDeck } from "./../models/deck.model";
 
 let deckList: IDeck[] = [
   {
     _id: "1",
-    title: "deck 1",
-    cardList: [
-      { _id: "11", question: "You are developer", answer: Answer.Correct },
+    title: "React",
+    cards: [
       {
-        _id: "12",
-        question: "Flutter is better than react-native",
-        answer: Answer.Correct
+        _id: "11",
+        question: "What is React?",
+        answer: "A library for managing user interfaces"
       },
       {
-        _id: "13",
-        question: "The sun rises from the west",
-        answer: Answer.Wrong
+        _id: "12",
+        question: "Where do you make Ajax requests in React?",
+        answer: "The componentDidMount life-cycle event"
       }
     ]
   },
   {
     _id: "2",
-    title: "deck 2",
-    cardList: [
-      { _id: "21", question: "You are developer", answer: Answer.Correct },
+    title: "JavaScript",
+    cards: [
       {
-        _id: "22",
-        question: "Flutter is better than react-native",
-        answer: Answer.Correct
-      },
-      {
-        _id: "23",
-        question: "The sun rises from the west",
-        answer: Answer.Wrong
+        _id: "21",
+        question: "What is a closure?",
+        answer:
+          "The combination of a function and the lexical environment within which that function was declared."
       }
     ]
   }
@@ -53,7 +47,7 @@ export class DeckService {
         const newDeck: IDeck = {
           _id: uuidv4(),
           title: title,
-          cardList: []
+          cards: []
         };
 
         deckList.push(newDeck);
@@ -85,7 +79,7 @@ export class DeckService {
         }
 
         card._id = uuidv4();
-        deckList[deckIndex].cardList.push(card);
+        deckList[deckIndex].cards.push(card);
 
         res({ ...card });
       }, 1000);
@@ -100,14 +94,14 @@ export class DeckService {
           rej("desk not found");
         }
 
-        const cardIndex = deckList[deckIndex].cardList.findIndex(
+        const cardIndex = deckList[deckIndex].cards.findIndex(
           d => d._id === cardId
         );
         if (cardIndex === -1) {
           rej("card not found");
         }
 
-        deckList[deckIndex].cardList.splice(cardIndex, 1);
+        deckList[deckIndex].cards.splice(cardIndex, 1);
 
         res();
       }, 1000);
