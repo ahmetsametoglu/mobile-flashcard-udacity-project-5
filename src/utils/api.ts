@@ -62,16 +62,16 @@ export class DeckService {
     });
   }
 
-  static removeDeck(deckId: string): Promise<void> {
+  static removeDeck(deckId: string): Promise<boolean> {
     return new Promise((res, rej) => {
       setTimeout(() => {
         const deckIndex = deckList.findIndex(d => d._id === deckId);
         if (deckIndex === -1) {
-          rej("desk not found");
+          rej(false);
         }
 
         deckList.splice(deckIndex, 1);
-        res();
+        res(true);
       }, 1000);
     });
   }
