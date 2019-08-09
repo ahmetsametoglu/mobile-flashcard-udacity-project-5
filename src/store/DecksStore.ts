@@ -39,10 +39,12 @@ export class DecksAction {
   public async addDeck(deckTitle: string) {
     const newDeck = await DeckService.addDeck(deckTitle);
     console.log("newDeck:", newDeck);
-    return this.dispatch({
+    this.dispatch({
       type: ActionType.AddDeckToList,
       payload: { newDeck: newDeck }
     });
+
+    return newDeck;
   }
 
   public async removeDeck(id: string) {
