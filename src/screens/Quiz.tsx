@@ -4,6 +4,7 @@ import { INavigationProp } from "../models/props.model";
 import { useStateValue } from "../contexts/StateContext";
 import QuestionCard from "../components/QuestionCard/QuestionCard";
 import { Colors } from "../utils/color";
+import ActionButton from "../components/QuestionCard/ActionButton";
 
 interface IProps extends INavigationProp {}
 
@@ -21,18 +22,54 @@ const Quiz: FC<IProps> = props => {
     return <ThereIsNoCard />;
   }
 
-  const handleAnswerQuestion = () => {
-    setScore(score + 1);
+  const handleAnswerQuestion = isCorrect => {
+    if (isCorrect) {
+      setScore(score + 1);
+    }
     setCurrentQuestion(currentQuestion + 1);
   };
 
-  const scoreView = (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text style={styles.scoreInfo}>{`score: ${(score /
-        selectedDeck.cards.length) *
-        100}`}</Text>
-    </View>
-  );
+  const handleRestartQuiz = () => {
+    setScore(0);
+    setCurrentQuestion(1);
+  };
+
+  const scoreView = () => {
+    const scorePercentage = Math.round(
+      (score / selectedDeck.cards.length) * 100
+    );
+
+    const color =
+      scorePercentage < 35
+        ? Colors.errorColor
+        : scorePercentage < 70
+        ? Colors.thirdColor
+        : Colors.successColor;
+
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <View
+          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+        >
+          <Text
+            style={[styles.score, { color: color }]}
+          >{`${scorePercentage} %`}</Text>
+        </View>
+
+        <ActionButton
+          buttonText="Restart Quiz"
+          handleClick={handleRestartQuiz}
+          textColor={Colors.secondaryColor}
+        />
+        <ActionButton
+          buttonText="Back to Deck"
+          handleClick={_ => navigation.pop()}
+          textColor={Colors.thirdColor}
+        />
+      </View>
+    );
+  };
+
   const questionView = (
     <Fragment>
       <View style={styles.infoSection}>
@@ -50,7 +87,7 @@ const Quiz: FC<IProps> = props => {
 
   return (
     <View style={{ flex: 1, padding: 20 }}>
-      {currentQuestion > selectedDeck.cards.length ? scoreView : questionView}
+      {currentQuestion > selectedDeck.cards.length ? scoreView() : questionView}
     </View>
   );
 };
@@ -59,6 +96,7 @@ const styles = StyleSheet.create<{
   infoSection: ViewStyle;
   quizInfo: TextStyle;
   scoreInfo: TextStyle;
+  score: TextStyle;
 }>({
   infoSection: {
     flexDirection: "row",
@@ -72,6 +110,10 @@ const styles = StyleSheet.create<{
   scoreInfo: {
     fontSize: 20,
     color: Colors.successColor
+  },
+  score: {
+    fontSize: 72,
+    color: Colors.primaryColor
   }
 });
 
