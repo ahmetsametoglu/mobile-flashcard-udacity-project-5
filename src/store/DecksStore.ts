@@ -2,6 +2,7 @@ import { DeckService } from "./../utils/api";
 import { IDeck } from "./../models/deck.model";
 import { ActionType } from "./ActionType";
 import { Reducer, Dispatch } from "react";
+import { ICard } from "../models/card.model";
 
 //#region models
 
@@ -13,6 +14,8 @@ interface IDeckPayload {
   deckList?: IDeck[];
   newDeck?: IDeck;
   removeDeckId?: string;
+  newCard?: ICard;
+  currentDeckId?: string;
 }
 
 interface IDecksAction {
@@ -32,7 +35,7 @@ export class DecksAction {
 
     return this.dispatch({
       type: ActionType.FetchDeckList,
-      payload: { deckList: deckList }
+      payload: { deckList: [...deckList] }
     });
   }
 
@@ -56,6 +59,16 @@ export class DecksAction {
         payload: { removeDeckId: id }
       });
   }
+
+  public async addCard(deckId: string, question: string, answer: string) {
+    const newCard = await DeckService.addCard(deckId, question, answer);
+    this.dispatch({
+      type: ActionType.AddCardToDeck,
+      payload: { newCard: newCard, currentDeckId: deckId }
+    });
+
+    return newCard;
+  }
 }
 
 export const initialDecksState: IDecksState = { deckList: [] };
@@ -71,9 +84,10 @@ export const decksReducer: Reducer<IDecksState, IDecksAction> = (
       const deckList = action.payload.deckList;
 
       if (!!deckList) {
-        state.deckList = deckList;
+        return { ...state, deckList: [...deckList] };
+      } else {
+        return { ...state };
       }
-      return { ...state };
 
     case ActionType.AddDeckToList:
       const newDeck = action.payload.newDeck;
@@ -89,6 +103,17 @@ export const decksReducer: Reducer<IDecksState, IDecksAction> = (
       );
       if (removeDeckIndex !== -1) {
         state.deckList.splice(removeDeckIndex, 1);
+      }
+      return { ...state };
+
+    case ActionType.AddCardToDeck:
+      const currentDeckId = action.payload.currentDeckId;
+      const newCard = action.payload.newCard;
+      if (!!newCard) {
+        const deckIndex = state.deckList.findIndex(
+          d => d._id === currentDeckId
+        );
+        state.deckList[deckIndex].cards.push(newCard);
       }
       return { ...state };
   }
