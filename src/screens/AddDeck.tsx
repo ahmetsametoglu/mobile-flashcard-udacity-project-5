@@ -5,9 +5,7 @@ import {
   TextStyle,
   TextInput,
   ViewStyle,
-  KeyboardAvoidingView,
   TouchableHighlight,
-  ScrollView,
   View
 } from "react-native";
 import { Colors } from "../utils/color";
@@ -15,6 +13,7 @@ import { INavigationProp } from "../models/props.model";
 import { useStateValue } from "../contexts/StateContext";
 import { useAppValue } from "../contexts/AppContext";
 import { NavigationPages } from "../navigators/NavigationPages";
+import KeyboardView from "../hoc/KeyboardView";
 
 interface IProps extends INavigationProp {}
 const AddDeck: FC<IProps> = props => {
@@ -45,34 +44,28 @@ const AddDeck: FC<IProps> = props => {
   };
 
   return (
-    <KeyboardAvoidingView
-      style={{ flex: 1, flexDirection: "column", justifyContent: "center" }}
-      behavior="padding"
-      keyboardVerticalOffset={150}
-    >
-      <ScrollView>
-        <View style={styles.container}>
-          <Text style={styles.title}>What is the title of your new deck ?</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Deck Title"
-            placeholderTextColor={Colors.grey}
-            onSubmitEditing={onSubmitPage}
-            value={deckTitle}
-            onChangeText={value => {
-              setDeckTitle(value);
-            }}
-          />
-          <TouchableHighlight
-            style={styles.button}
-            onPress={onSubmitPage}
-            underlayColor={Colors.thirdColor}
-          >
-            <Text style={{ color: Colors.white, fontSize: 20 }}>Submit</Text>
-          </TouchableHighlight>
-        </View>
-      </ScrollView>
-    </KeyboardAvoidingView>
+    <KeyboardView>
+      <View style={styles.container}>
+        <Text style={styles.title}>What is the title of your new deck ?</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Deck Title"
+          placeholderTextColor={Colors.grey}
+          onSubmitEditing={onSubmitPage}
+          value={deckTitle}
+          onChangeText={value => {
+            setDeckTitle(value);
+          }}
+        />
+        <TouchableHighlight
+          style={styles.button}
+          onPress={onSubmitPage}
+          underlayColor={Colors.thirdColor}
+        >
+          <Text style={{ color: Colors.white, fontSize: 20 }}>Submit</Text>
+        </TouchableHighlight>
+      </View>
+    </KeyboardView>
   );
 };
 
