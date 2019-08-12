@@ -6,6 +6,7 @@ import { TouchableHighlight } from "react-native-gesture-handler";
 import { Colors } from "../utils/color";
 import { useStateValue } from "../contexts/StateContext";
 import { useAppValue } from "../contexts/AppContext";
+import { getCardCountText } from "../utils/helper";
 
 interface IProps extends INavigationProp {}
 const DeckMenu: FC<IProps> = props => {
@@ -35,15 +36,19 @@ const DeckMenu: FC<IProps> = props => {
       <View style={{ flex: 1, margin: 40 }}>
         <View style={styles.infoSection}>
           <Text style={styles.title}>{selectedDeck.title}</Text>
-          <Text style={styles.description}>{`${
-            selectedDeck.cards.length
-          } cards`}</Text>
+          <Text style={styles.description}>
+            {getCardCountText(selectedDeck.cards.length)}
+          </Text>
         </View>
         <View style={styles.buttonSection}>
           <TouchableHighlight
             underlayColor={Colors.thirdColor}
             style={[styles.button, { backgroundColor: Colors.white }]}
-            onPress={() => navigation.push(NavigationPages.AddCard)}
+            onPress={() =>
+              navigation.push(NavigationPages.AddCard, {
+                deckId: selectedDeck._id
+              })
+            }
           >
             <Text style={[styles.buttonLabel, { color: Colors.black }]}>
               Add Card

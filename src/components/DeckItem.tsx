@@ -10,6 +10,7 @@ import { IDeck } from "../models/deck.model";
 import { Colors } from "../utils/color";
 import { INavigationProp } from "../models/props.model";
 import { NavigationPages } from "../navigators/NavigationPages";
+import { getCardCountText } from "../utils/helper";
 
 interface IProps extends INavigationProp {
   deck: IDeck;
@@ -28,7 +29,9 @@ const DeckItem: FC<IProps> = props => {
       }}
     >
       <Text style={styles.title}>{deck.title}</Text>
-      <Text style={styles.cardNumber}>{`${deck.cards.length} cards`}</Text>
+      <Text style={styles.cardNumber}>
+        {getCardCountText(deck.cards.length)}
+      </Text>
     </TouchableOpacity>
   );
 };
