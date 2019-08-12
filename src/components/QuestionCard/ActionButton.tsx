@@ -5,11 +5,17 @@ import { Colors } from "../../utils/color";
 
 interface IProp {
   buttonText: string;
-  buttonColor: string;
   handleClick: Function;
+  buttonColor?: string;
+  textColor?: string;
 }
 const ActionButton: FC<IProp> = props => {
-  const { buttonText, handleClick, buttonColor } = props;
+  const {
+    buttonText,
+    handleClick,
+    buttonColor = Colors.white,
+    textColor = Colors.black
+  } = props;
 
   return (
     <TouchableHighlight
@@ -17,7 +23,9 @@ const ActionButton: FC<IProp> = props => {
       onPress={() => handleClick()}
       style={[styles.button, { backgroundColor: buttonColor }]}
     >
-      <Text style={styles.buttonText}>{buttonText}</Text>
+      <Text style={[styles.buttonText, { color: textColor }]}>
+        {buttonText}
+      </Text>
     </TouchableHighlight>
   );
 };
@@ -33,7 +41,6 @@ const styles = StyleSheet.create<{ button: ViewStyle; buttonText: TextStyle }>({
     borderRadius: 10
   },
   buttonText: {
-    color: Colors.white,
     fontSize: 20,
     textAlign: "center"
   }
