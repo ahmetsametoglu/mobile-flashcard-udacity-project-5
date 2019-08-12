@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect, useRef } from "react";
+import React, { FC, useState, useEffect, useRef, Fragment } from "react";
 import {
   View,
   Text,
@@ -24,6 +24,7 @@ const QuestionCard: FC<IProp> = props => {
   const [animatedTextStyle, setAnimatedTextStyle] = useState(styles.question);
 
   const handleOnAnswerQuestion = (answer: boolean) => {
+    setShowAnswer(false);
     onAnswerQuestion(answer);
   };
 
@@ -38,6 +39,7 @@ const QuestionCard: FC<IProp> = props => {
       toValue: 0,
       duration: 250
     }).start(() => {
+      setButtonSection(newState ? actionButtons : showAnswerButton);
       setAnimatedTextStyle(newState ? styles.answer : styles.question);
       setAnimatedText(newState ? question.answer : question.question);
       Animated.timing(opacity, {
@@ -73,25 +75,34 @@ const QuestionCard: FC<IProp> = props => {
     </TouchableHighlight>
   );
 
+  const actionButtons = (
+    <Fragment>
+      <ActionButton
+        buttonColor={Colors.errorColor}
+        textColor={Colors.white}
+        buttonText="Incorrect"
+        handleClick={() => handleOnAnswerQuestion(false)}
+      />
+      <ActionButton
+        buttonColor={Colors.successColor}
+        textColor={Colors.white}
+        buttonText="Correct"
+        handleClick={() => handleOnAnswerQuestion(true)}
+      />
+    </Fragment>
+  );
+
+  const [buttonSection, setButtonSection] = useState(showAnswerButton);
+
   return (
     <View style={styles.card}>
-      {showAnswerButton}
       <View style={[styles.questionSection]}>
         <Animated.Text style={[{ opacity }, animatedTextStyle]}>
           {animatedText}
         </Animated.Text>
       </View>
 
-      <ActionButton
-        buttonColor={Colors.errorColor}
-        buttonText="Incorrect"
-        handleClick={() => handleOnAnswerQuestion(false)}
-      />
-      <ActionButton
-        buttonColor={Colors.successColor}
-        buttonText="Correct"
-        handleClick={() => handleOnAnswerQuestion(true)}
-      />
+      <Animated.View style={{ opacity }}>{buttonSection}</Animated.View>
     </View>
   );
 };
