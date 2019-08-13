@@ -5,6 +5,7 @@ import { useStateValue } from "../contexts/StateContext";
 import QuestionCard from "../components/QuestionCard/QuestionCard";
 import { Colors } from "../utils/color";
 import ActionButton from "../components/QuestionCard/ActionButton";
+import { NotificationHelper } from "../utils/helper";
 
 interface IProps extends INavigationProp {}
 
@@ -35,6 +36,10 @@ const Quiz: FC<IProps> = props => {
   };
 
   const scoreView = () => {
+    NotificationHelper.clearLocalNotification().then(
+      NotificationHelper.setLocalNotification
+    );
+
     const scorePercentage = Math.round(
       (score / selectedDeck.cards.length) * 100
     );
