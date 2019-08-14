@@ -1,15 +1,15 @@
-import React, { FC } from "react";
+import React from "react";
 import { Text, ViewStyle, TextStyle, StyleSheet } from "react-native";
 import { TouchableHighlight } from "react-native-gesture-handler";
 import { Colors } from "../../utils/color";
 
-type IProp = {
+type Props = {
   buttonText: string;
   handleClick: Function;
   buttonColor?: string;
   textColor?: string;
 };
-const ActionButton: FC<IProp> = props => {
+const ActionButton = (props: Props) => {
   const {
     buttonText,
     handleClick,

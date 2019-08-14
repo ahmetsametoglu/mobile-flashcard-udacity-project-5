@@ -1,11 +1,11 @@
-import React, { FC, Fragment } from "react";
+import React from "react";
 import { View, Text } from "react-native";
 import DeckList from "../components/deck-list";
 import { INavigationProp } from "../models/props.model";
 
-type IProps = {} & INavigationProp;
+type Props = {} & INavigationProp;
 
-const Decks: FC<IProps> = props => {
+const Decks = (props: Props) => {
   console.log("[Decks Screen]: init");
   return (
     <View style={{ flex: 1 }}>

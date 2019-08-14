@@ -1,11 +1,13 @@
-import React, { FC, Fragment } from "react";
+import React, { Fragment, ReactChild } from "react";
 import { View, Text, ActivityIndicator } from "react-native";
 import { Colors } from "../utils/color";
 import { useAppValue } from "../contexts/app-context";
 
-type IProp = {};
+type Props = {
+  children: ReactChild;
+};
 
-const Loading: FC<IProp> = props => {
+const Loading = (props: Props) => {
   const { state } = useAppValue();
 
   if (!state.showLoading) {

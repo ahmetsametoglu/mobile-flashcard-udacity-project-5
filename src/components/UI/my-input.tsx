@@ -1,16 +1,16 @@
-import React, { FC } from "react";
+import React from "react";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { Input } from "react-native-elements";
 import { Colors } from "../../utils/color";
 
-type IProps = {
+type Props = {
   placeHolder: string;
   onValueChanged: Function;
   value: string;
   labelText: string;
   iconName?: string;
 };
-const MyInput: FC<IProps> = props => {
+const MyInput = (props: Props) => {
   return (
     <Input
       value={props.value}

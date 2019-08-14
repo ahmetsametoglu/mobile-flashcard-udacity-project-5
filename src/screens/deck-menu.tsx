@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 import { View, Text, StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { INavigationProp } from "../models/props.model";
 import { NavigationPages } from "../navigators/navigation-pages";
@@ -8,9 +8,9 @@ import { useStateValue } from "../contexts/state-context";
 import { useAppValue } from "../contexts/app-context";
 import { getCardCountText } from "../utils/helper";
 
-type IProps = {} & INavigationProp;
+type Props = {} & INavigationProp;
 
-const DeckMenu: FC<IProps> = props => {
+const DeckMenu = (props: Props) => {
   const { state, deckAction } = useStateValue();
   const { appAction } = useAppValue();
 

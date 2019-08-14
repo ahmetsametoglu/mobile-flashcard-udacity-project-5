@@ -1,8 +1,10 @@
-import React, { FC } from "react";
+import React, { ReactChild } from "react";
 import { KeyboardAvoidingView } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 
-const KeyboardView: FC = props => {
+type Props = { children: ReactChild };
+
+const KeyboardView = (props: Props) => {
   return (
     <KeyboardAvoidingView
       style={{

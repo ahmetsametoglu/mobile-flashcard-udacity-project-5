@@ -1,11 +1,11 @@
-import React, { FC } from "react";
+import React from "react";
 import { FlatList } from "react-native";
 import { INavigationProp } from "../models/props.model";
 import DeckItem from "./deck-item";
 import { useStateValue } from "../contexts/state-context";
 
-type IProps = {} & INavigationProp;
-const DeckList: FC<IProps> = props => {
+type Props = {} & INavigationProp;
+const DeckList = (props: Props) => {
   console.log("[DeckList component]: init");
   const { state } = useStateValue();
 

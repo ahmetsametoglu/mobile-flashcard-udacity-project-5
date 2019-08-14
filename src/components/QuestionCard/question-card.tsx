@@ -1,4 +1,4 @@
-import React, { FC, useState, Fragment } from "react";
+import React, { useState, Fragment } from "react";
 import {
   View,
   Text,
@@ -13,12 +13,12 @@ import { ICard } from "../../models/card.model";
 import ActionButton from "./action-button";
 import { Colors } from "../../utils/color";
 
-type IProp = {
+type Props = {
   question: ICard;
   onAnswerQuestion: Function;
 };
 
-const QuestionCard: FC<IProp> = props => {
+const QuestionCard = (props: Props) => {
   const { question, onAnswerQuestion } = props;
   const [showAnswer, setShowAnswer] = useState(false);
 

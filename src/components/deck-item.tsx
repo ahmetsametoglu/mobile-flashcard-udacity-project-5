@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 import {
   Text,
   StyleSheet,
@@ -12,11 +12,11 @@ import { INavigationProp } from "../models/props.model";
 import { NavigationPages } from "../navigators/navigation-pages";
 import { getCardCountText } from "../utils/helper";
 
-type IProps = {
+type Props = {
   deck: IDeck;
 } & INavigationProp;
 
-const DeckItem: FC<IProps> = props => {
+const DeckItem = (props: Props) => {
   const { deck, navigation } = props;
 
   return (

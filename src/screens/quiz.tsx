@@ -1,4 +1,4 @@
-import React, { FC, useState, Fragment } from "react";
+import React, { useState, Fragment } from "react";
 import { View, Text, StyleSheet, ViewStyle, TextStyle } from "react-native";
 import { INavigationProp } from "../models/props.model";
 import { useStateValue } from "../contexts/state-context";
@@ -7,9 +7,9 @@ import { Colors } from "../utils/color";
 import ActionButton from "../components/QuestionCard/action-button";
 import { NotificationHelper } from "../utils/helper";
 
-type IProps = {} & INavigationProp;
+type Props = {} & INavigationProp;
 
-const Quiz: FC<IProps> = props => {
+const Quiz = (props: Props) => {
   const { navigation } = props;
   const { state } = useStateValue();
 
@@ -126,7 +126,7 @@ const styles = StyleSheet.create<{
 
 export default Quiz;
 
-const ThereIsNoCard: FC = () => {
+const ThereIsNoCard = () => {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Text style={{ margin: 25, fontSize: 23, textAlign: "center" }}>

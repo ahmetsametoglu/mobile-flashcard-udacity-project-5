@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { useState } from "react";
 import { View, StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { INavigationProp } from "../models/props.model";
 import KeyboardView from "../hoc/keyboard-view";
@@ -9,9 +9,9 @@ import { Colors } from "../utils/color";
 import { useStateValue } from "../contexts/state-context";
 import { useAppValue } from "../contexts/app-context";
 
-type IProps = {} & INavigationProp;
+type Props = {} & INavigationProp;
 
-const AddCard: FC<IProps> = props => {
+const AddCard = (props: Props) => {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
 

@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { useState } from "react";
 import {
   Text,
   StyleSheet,
@@ -15,8 +15,9 @@ import { useAppValue } from "../contexts/app-context";
 import { NavigationPages } from "../navigators/navigation-pages";
 import KeyboardView from "../hoc/keyboard-view";
 
-type IProps = {} & INavigationProp;
-const AddDeck: FC<IProps> = props => {
+type Props = {} & INavigationProp;
+
+const AddDeck = (props: Props) => {
   const [deckTitle, setDeckTitle] = useState("");
   const { deckAction } = useStateValue();
   const { appAction } = useAppValue();
