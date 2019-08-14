@@ -27,7 +27,7 @@ export class AppAction {
     });
   }
 
-  public hideLoading(text?: string) {
+  public hideLoading() {
     return this.dispatch({
       type: "HideLoading"
     });
