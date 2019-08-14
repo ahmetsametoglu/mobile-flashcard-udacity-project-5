@@ -83,9 +83,9 @@ export class DeckService {
 
           if (value !== null) {
             const data = JSON.parse(value) as IDeck[];
-            _deckList = data.map(x => Object.assign({}, x));
+            _deckList = data;
           }
-          res([..._deckList]);
+          res(getDeepCopy(_deckList));
         } catch (error) {
           rej(error);
         }
@@ -202,3 +202,7 @@ export class DeckService {
     return await AsyncStorage.setItem("decks", JSON.stringify(deckList));
   }
 }
+
+const getDeepCopy = object => {
+  return object.map(x => Object.assign({}, x));
+};
