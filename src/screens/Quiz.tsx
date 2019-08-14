@@ -27,7 +27,9 @@ const Quiz: FC<IProps> = props => {
     if (isCorrect) {
       setScore(score + 1);
     }
-    setCurrentQuestion(currentQuestion + 1);
+    setTimeout(() => {
+      setCurrentQuestion(currentQuestion + 1);
+    }, 250);
   };
 
   const handleRestartQuiz = () => {

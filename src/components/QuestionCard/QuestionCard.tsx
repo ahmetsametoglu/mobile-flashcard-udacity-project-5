@@ -1,13 +1,14 @@
-import React, { FC, useState, useEffect, useRef, Fragment } from "react";
+import React, { FC, useState, Fragment } from "react";
 import {
   View,
   Text,
   TouchableHighlight,
   ViewStyle,
   StyleSheet,
-  TextStyle,
-  Animated
+  TextStyle
 } from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome";
+import CardFlip from "react-native-card-flip";
 import { ICard } from "../../models/card.model";
 import ActionButton from "./ActionButton";
 import { Colors } from "../../utils/color";
@@ -20,63 +21,48 @@ interface IProp {
 const QuestionCard: FC<IProp> = props => {
   const { question, onAnswerQuestion } = props;
   const [showAnswer, setShowAnswer] = useState(false);
-  const [animatedText, setAnimatedText] = useState(question.question);
-  const [animatedTextStyle, setAnimatedTextStyle] = useState(styles.question);
 
   const handleOnAnswerQuestion = (answer: boolean) => {
     setShowAnswer(false);
     onAnswerQuestion(answer);
+    flipCard.flip();
   };
 
-  const handleShowAnswer = (newState: boolean) => {
-    setShowAnswer(newState);
-    _startAnimate(newState);
-  };
-
-  const opacity = useRef(new Animated.Value(0)).current;
-  const _startAnimate = (newState = false) => {
-    Animated.timing(opacity, {
-      toValue: 0,
-      duration: 250
-    }).start(() => {
-      setButtonSection(newState ? actionButtons : showAnswerButton);
-      setAnimatedTextStyle(newState ? styles.answer : styles.question);
-      setAnimatedText(newState ? question.answer : question.question);
-      Animated.timing(opacity, {
-        toValue: 1,
-        duration: 500
-      }).start();
-    });
-  };
-
-  useEffect(() => {
-    _startAnimate();
-  }, []);
-
-  useEffect(() => {
-    _startAnimate();
-  }, [question]);
+  // useEffect(() => {
+  // }, [question]);
 
   const showAnswerButton = (
     <TouchableHighlight
       underlayColor="transparent"
+      style={{ height: 40, padding: 10 }}
       onPress={() => {
-        handleShowAnswer(!showAnswer);
+        if (!showAnswer) {
+          flipCard.flip();
+          setShowAnswer(true);
+        }
       }}
     >
-      <Text
-        style={{
-          color: showAnswer ? Colors.primaryColor : Colors.errorColor,
-          fontSize: 20
-        }}
-      >
-        {showAnswer ? "show question" : "show answer"}
-      </Text>
+      {!showAnswer ? (
+        <View style={styles.showAnswerButton}>
+          <Icon name="refresh" size={18} color={Colors.grey} />
+          <Text
+            style={{
+              marginLeft: 7,
+              color: Colors.grey,
+              fontSize: 18
+            }}
+          >
+            show answer
+          </Text>
+        </View>
+      ) : (
+        <View />
+      )}
     </TouchableHighlight>
   );
 
   const actionButtons = (
-    <Fragment>
+    <View style={styles.actionButtons}>
       <ActionButton
         buttonColor={Colors.errorColor}
         textColor={Colors.white}
@@ -89,37 +75,56 @@ const QuestionCard: FC<IProp> = props => {
         buttonText="Correct"
         handleClick={() => handleOnAnswerQuestion(true)}
       />
-    </Fragment>
+    </View>
   );
 
-  const [buttonSection, setButtonSection] = useState(showAnswerButton);
+  const [] = useState(showAnswerButton);
 
+  let flipCard;
   return (
-    <View style={styles.card}>
-      <View style={[styles.questionSection]}>
-        <Animated.Text style={[{ opacity }, animatedTextStyle]}>
-          {animatedText}
-        </Animated.Text>
-      </View>
+    <Fragment>
+      <CardFlip style={styles.cardContainer} ref={_card => (flipCard = _card)}>
+        <View style={[styles.card, { backgroundColor: Colors.primaryColor }]}>
+          <Text style={styles.question}>{question.question}</Text>
+        </View>
 
-      <Animated.View style={{ opacity }}>{buttonSection}</Animated.View>
-    </View>
+        <View style={[styles.card, { backgroundColor: Colors.secondaryColor }]}>
+          <View
+            style={{
+              flex: 1,
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+          >
+            <Text style={styles.answer}>{question.answer}</Text>
+          </View>
+          {actionButtons}
+        </View>
+      </CardFlip>
+
+      {showAnswerButton}
+    </Fragment>
   );
 };
 
 const styles = StyleSheet.create<{
+  cardContainer: ViewStyle;
   card: ViewStyle;
-  questionSection: ViewStyle;
+  showAnswerButton: ViewStyle;
+  actionButtons: ViewStyle;
   question: TextStyle;
   answer: TextStyle;
 }>({
+  cardContainer: {
+    flex: 1
+  },
   card: {
     flex: 1,
     alignItems: "center",
+    justifyContent: "center",
     borderWidth: 1,
     borderRadius: 10,
     padding: 15,
-    backgroundColor: Colors.thirdColor,
     borderColor: Colors.grey,
     borderBottomWidth: 0,
     shadowOffset: { width: 0, height: 2 },
@@ -127,20 +132,25 @@ const styles = StyleSheet.create<{
     shadowRadius: 10,
     elevation: 2
   },
-  questionSection: {
-    flex: 1,
+  actionButtons: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between"
+  },
+  showAnswerButton: {
+    flexDirection: "row",
     justifyContent: "center",
     alignItems: "center"
   },
   question: {
-    color: Colors.primaryColor,
-    textAlign: "center",
-    fontSize: 34
+    color: Colors.white,
+    fontSize: 34,
+    textAlign: "center"
   },
   answer: {
-    color: Colors.secondaryColor,
-    textAlign: "center",
-    fontSize: 30
+    color: Colors.white,
+    fontSize: 30,
+    textAlign: "center"
   }
 });
 
