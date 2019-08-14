@@ -6,22 +6,22 @@ import { ICard } from "../models/card.model";
 
 //#region models
 
-export interface IDecksState {
+export type IDecksState = {
   deckList: IDeck[];
-}
+};
 
-interface IDeckPayload {
+type IDeckPayload = {
   deckList?: IDeck[];
   newDeck?: IDeck;
   removeDeckId?: string;
   newCard?: ICard;
   currentDeckId?: string;
-}
+};
 
-interface IDecksAction {
+type IDecksAction = {
   type: ActionType;
   payload: IDeckPayload | null;
-}
+};
 
 //#endregion models
 
