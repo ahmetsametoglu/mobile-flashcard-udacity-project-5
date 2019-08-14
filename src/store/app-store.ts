@@ -22,14 +22,14 @@ export class AppAction {
 
   public showLoading(text?: string) {
     return this.dispatch({
-      type: ActionType.ShowLoading,
+      type: "ShowLoading",
       payload: { loadingText: text }
     });
   }
 
   public hideLoading(text?: string) {
     return this.dispatch({
-      type: ActionType.HideLoading
+      type: "HideLoading"
     });
   }
 }
@@ -43,17 +43,17 @@ export const appReducer: Reducer<IAppState, IAppAction> = (
   state = initialAppState,
   action
 ) => {
-  console.log(`[App Reducer]: ${ActionType[action.type]}`);
+  console.log(`[App Reducer]: ${action.type}`);
 
   switch (action.type) {
-    case ActionType.ShowLoading:
+    case "ShowLoading":
       return {
         ...state,
         showLoading: true,
         loadingText: action.payload.loadingText
       };
 
-    case ActionType.HideLoading:
+    case "HideLoading":
       return { ...state, showLoading: false, loadingText: null };
 
     default:

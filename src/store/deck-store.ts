@@ -34,7 +34,7 @@ export class DecksAction {
     console.log("[Decks Action]: fetchDeckList");
 
     return this.dispatch({
-      type: ActionType.FetchDeckList,
+      type: "FetchDeckList",
       payload: { deckList: [...deckList] }
     });
   }
@@ -43,7 +43,7 @@ export class DecksAction {
     const newDeck = await DeckService.addDeck(deckTitle);
     console.log("newDeck:", newDeck);
     this.dispatch({
-      type: ActionType.AddDeckToList,
+      type: "AddDeckToList",
       payload: { newDeck: newDeck }
     });
 
@@ -55,7 +55,7 @@ export class DecksAction {
 
     if (isProcessSuccess)
       return this.dispatch({
-        type: ActionType.RemoveDeck,
+        type: "RemoveDeck",
         payload: { removeDeckId: id }
       });
   }
@@ -63,7 +63,7 @@ export class DecksAction {
   public async addCard(deckId: string, question: string, answer: string) {
     const newCard = await DeckService.addCard(deckId, question, answer);
     this.dispatch({
-      type: ActionType.AddCardToDeck,
+      type: "AddCardToDeck",
       payload: { newCard: newCard, currentDeckId: deckId }
     });
 
@@ -77,10 +77,10 @@ export const decksReducer: Reducer<IDecksState, IDecksAction> = (
   state = initialDecksState,
   action
 ) => {
-  console.log(`[Decks Reducer]: ${ActionType[action.type]}`);
+  console.log(`[Decks Reducer]: ${action.type}`);
 
   switch (action.type) {
-    case ActionType.FetchDeckList:
+    case "FetchDeckList":
       const deckList = action.payload.deckList;
 
       if (!!deckList) {
@@ -89,14 +89,14 @@ export const decksReducer: Reducer<IDecksState, IDecksAction> = (
         return { ...state };
       }
 
-    case ActionType.AddDeckToList:
+    case "AddDeckToList":
       const newDeck = action.payload.newDeck;
       if (!!newDeck) {
         state.deckList = [...state.deckList, newDeck];
       }
       return { ...state };
 
-    case ActionType.RemoveDeck:
+    case "RemoveDeck":
       const removeDeckId = action.payload.removeDeckId;
       const removeDeckIndex = state.deckList.findIndex(
         d => d._id === removeDeckId
@@ -106,7 +106,7 @@ export const decksReducer: Reducer<IDecksState, IDecksAction> = (
       }
       return { ...state };
 
-    case ActionType.AddCardToDeck:
+    case "AddCardToDeck":
       const currentDeckId = action.payload.currentDeckId;
       const newCard = action.payload.newCard;
       if (!!newCard) {
