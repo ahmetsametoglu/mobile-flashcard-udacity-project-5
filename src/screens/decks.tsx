@@ -3,7 +3,7 @@ import { View, Text } from "react-native";
 import DeckList from "../components/deck-list";
 import { INavigationProp } from "../models/props.model";
 
-interface IProps extends INavigationProp {}
+type IProps = {} & INavigationProp;
 
 const Decks: FC<IProps> = props => {
   console.log("[Decks Screen]: init");

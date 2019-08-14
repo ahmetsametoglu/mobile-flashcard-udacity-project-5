@@ -8,7 +8,8 @@ import { useStateValue } from "../contexts/state-context";
 import { useAppValue } from "../contexts/app-context";
 import { getCardCountText } from "../utils/helper";
 
-interface IProps extends INavigationProp {}
+type IProps = {} & INavigationProp;
+
 const DeckMenu: FC<IProps> = props => {
   const { state, deckAction } = useStateValue();
   const { appAction } = useAppValue();

@@ -7,7 +7,7 @@ import { Colors } from "../utils/color";
 import ActionButton from "../components/QuestionCard/action-button";
 import { NotificationHelper } from "../utils/helper";
 
-interface IProps extends INavigationProp {}
+type IProps = {} & INavigationProp;
 
 const Quiz: FC<IProps> = props => {
   const { navigation } = props;

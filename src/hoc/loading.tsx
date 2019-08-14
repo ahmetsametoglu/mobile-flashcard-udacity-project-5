@@ -3,7 +3,7 @@ import { View, Text, ActivityIndicator } from "react-native";
 import { Colors } from "../utils/color";
 import { useAppValue } from "../contexts/app-context";
 
-interface IProp {}
+type IProp = {};
 
 const Loading: FC<IProp> = props => {
   const { state } = useAppValue();

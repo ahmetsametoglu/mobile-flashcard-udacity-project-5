@@ -15,7 +15,7 @@ import { useAppValue } from "../contexts/app-context";
 import { NavigationPages } from "../navigators/navigation-pages";
 import KeyboardView from "../hoc/keyboard-view";
 
-interface IProps extends INavigationProp {}
+type IProps = {} & INavigationProp;
 const AddDeck: FC<IProps> = props => {
   const [deckTitle, setDeckTitle] = useState("");
   const { deckAction } = useStateValue();

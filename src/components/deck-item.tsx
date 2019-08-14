@@ -12,12 +12,13 @@ import { INavigationProp } from "../models/props.model";
 import { NavigationPages } from "../navigators/navigation-pages";
 import { getCardCountText } from "../utils/helper";
 
-interface IProps extends INavigationProp {
+type IProps = {
   deck: IDeck;
-}
+} & INavigationProp;
 
 const DeckItem: FC<IProps> = props => {
   const { deck, navigation } = props;
+
   return (
     <TouchableOpacity
       style={styles.card}

@@ -3,12 +3,12 @@ import { Text, ViewStyle, TextStyle, StyleSheet } from "react-native";
 import { TouchableHighlight } from "react-native-gesture-handler";
 import { Colors } from "../../utils/color";
 
-interface IProp {
+type IProp = {
   buttonText: string;
   handleClick: Function;
   buttonColor?: string;
   textColor?: string;
-}
+};
 const ActionButton: FC<IProp> = props => {
   const {
     buttonText,

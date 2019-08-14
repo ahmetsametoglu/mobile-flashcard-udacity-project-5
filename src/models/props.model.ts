@@ -1,5 +1,5 @@
 import { NavigationScreenProp } from "react-navigation";
 
-export interface INavigationProp {
+export type INavigationProp = {
   navigation: NavigationScreenProp<any, any>;
-}
+};

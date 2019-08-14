@@ -13,10 +13,10 @@ import { ICard } from "../../models/card.model";
 import ActionButton from "./action-button";
 import { Colors } from "../../utils/color";
 
-interface IProp {
+type IProp = {
   question: ICard;
   onAnswerQuestion: Function;
-}
+};
 
 const QuestionCard: FC<IProp> = props => {
   const { question, onAnswerQuestion } = props;

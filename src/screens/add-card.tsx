@@ -9,7 +9,7 @@ import { Colors } from "../utils/color";
 import { useStateValue } from "../contexts/state-context";
 import { useAppValue } from "../contexts/app-context";
 
-interface IProps extends INavigationProp {}
+type IProps = {} & INavigationProp;
 
 const AddCard: FC<IProps> = props => {
   const [question, setQuestion] = useState("");

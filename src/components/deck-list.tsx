@@ -4,7 +4,7 @@ import { INavigationProp } from "../models/props.model";
 import DeckItem from "./deck-item";
 import { useStateValue } from "../contexts/state-context";
 
-interface IProps extends INavigationProp {}
+type IProps = {} & INavigationProp;
 const DeckList: FC<IProps> = props => {
   console.log("[DeckList component]: init");
   const { state } = useStateValue();
