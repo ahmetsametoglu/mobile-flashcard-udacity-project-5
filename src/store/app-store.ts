@@ -1,4 +1,4 @@
-import { ActionType } from "./ActionType";
+import { ActionType } from "./action-type";
 import { Dispatch, Reducer } from "react";
 
 //#region models

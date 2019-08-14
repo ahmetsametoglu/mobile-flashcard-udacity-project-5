@@ -9,7 +9,7 @@ import {
 import { IDeck } from "../models/deck.model";
 import { Colors } from "../utils/color";
 import { INavigationProp } from "../models/props.model";
-import { NavigationPages } from "../navigators/NavigationPages";
+import { NavigationPages } from "../navigators/navigation-pages";
 import { getCardCountText } from "../utils/helper";
 
 interface IProps extends INavigationProp {

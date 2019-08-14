@@ -1,6 +1,6 @@
 import React, { FC, Fragment } from "react";
 import { View, Text } from "react-native";
-import DeckList from "../components/DeckList";
+import DeckList from "../components/deck-list";
 import { INavigationProp } from "../models/props.model";
 
 interface IProps extends INavigationProp {}

@@ -1,10 +1,10 @@
 import React, { FC, useState, Fragment } from "react";
 import { View, Text, StyleSheet, ViewStyle, TextStyle } from "react-native";
 import { INavigationProp } from "../models/props.model";
-import { useStateValue } from "../contexts/StateContext";
-import QuestionCard from "../components/QuestionCard/QuestionCard";
+import { useStateValue } from "../contexts/state-context";
+import QuestionCard from "../components/QuestionCard/question-card";
 import { Colors } from "../utils/color";
-import ActionButton from "../components/QuestionCard/ActionButton";
+import ActionButton from "../components/QuestionCard/action-button";
 import { NotificationHelper } from "../utils/helper";
 
 interface IProps extends INavigationProp {}

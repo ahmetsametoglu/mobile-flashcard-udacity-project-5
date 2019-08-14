@@ -10,7 +10,7 @@ import {
 import Icon from "react-native-vector-icons/FontAwesome";
 import CardFlip from "react-native-card-flip";
 import { ICard } from "../../models/card.model";
-import ActionButton from "./ActionButton";
+import ActionButton from "./action-button";
 import { Colors } from "../../utils/color";
 
 interface IProp {

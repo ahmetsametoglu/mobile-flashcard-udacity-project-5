@@ -7,8 +7,8 @@ import {
 } from "react-navigation";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
 
-import Decks from "../screens/Decks";
-import AddDeck from "../screens/AddDeck";
+import Decks from "../screens/decks";
+import AddDeck from "../screens/add-deck";
 import { Colors } from "../utils/color";
 
 const router = {

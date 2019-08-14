@@ -4,7 +4,7 @@ import {
   IAppState,
   appReducer,
   initialAppState
-} from "../store/AppStore";
+} from "../store/app-store";
 
 interface IAppContext {
   state: IAppState;

@@ -4,7 +4,7 @@ import {
   initialDecksState,
   IDecksState,
   DecksAction
-} from "../store/DecksStore";
+} from "../store/deck-store";
 
 interface IStateContext {
   state: IDecksState;

@@ -1,13 +1,13 @@
 import React from "react";
 import { View, StatusBar } from "react-native";
-import StackNav from "./src/navigators/StackNav";
 
 import Constants from "expo-constants";
-import Loading from "./src/hoc/Loading";
-import StateContextProvider from "./src/contexts/StateContext";
-import AppContextProvider from "./src/contexts/AppContext";
+import Loading from "./src/hoc/loading";
+import StateContextProvider from "./src/contexts/state-context";
+import AppContextProvider from "./src/contexts/app-context";
 import { Colors } from "./src/utils/color";
 import { NotificationHelper } from "./src/utils/helper";
+import StackNav from "./src/navigators/stack-nav";
 
 const App = () => {
   console.log("[App]: init");

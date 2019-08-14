@@ -1,6 +1,6 @@
-import { DeckService } from "./../utils/api";
-import { IDeck } from "./../models/deck.model";
-import { ActionType } from "./ActionType";
+import { DeckService } from "../utils/api";
+import { IDeck } from "../models/deck.model";
+import { ActionType } from "./action-type";
 import { Reducer, Dispatch } from "react";
 import { ICard } from "../models/card.model";
 

@@ -1,11 +1,11 @@
 import React, { FC } from "react";
 import { View, Text, StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { INavigationProp } from "../models/props.model";
-import { NavigationPages } from "../navigators/NavigationPages";
+import { NavigationPages } from "../navigators/navigation-pages";
 import { TouchableHighlight } from "react-native-gesture-handler";
 import { Colors } from "../utils/color";
-import { useStateValue } from "../contexts/StateContext";
-import { useAppValue } from "../contexts/AppContext";
+import { useStateValue } from "../contexts/state-context";
+import { useAppValue } from "../contexts/app-context";
 import { getCardCountText } from "../utils/helper";
 
 interface IProps extends INavigationProp {}

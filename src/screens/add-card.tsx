@@ -1,13 +1,13 @@
 import React, { FC, useState } from "react";
 import { View, StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { INavigationProp } from "../models/props.model";
-import KeyboardView from "../hoc/KeyboardView";
-import MyInput from "../components/UI/MyInput";
+import KeyboardView from "../hoc/keyboard-view";
+import MyInput from "../components/UI/my-input";
 import { TouchableHighlight } from "react-native-gesture-handler";
 import { Text } from "react-native-elements";
 import { Colors } from "../utils/color";
-import { useStateValue } from "../contexts/StateContext";
-import { useAppValue } from "../contexts/AppContext";
+import { useStateValue } from "../contexts/state-context";
+import { useAppValue } from "../contexts/app-context";
 
 interface IProps extends INavigationProp {}
 

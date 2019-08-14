@@ -1,8 +1,8 @@
 import React, { FC } from "react";
 import { FlatList } from "react-native";
 import { INavigationProp } from "../models/props.model";
-import DeckItem from "./DeckItem";
-import { useStateValue } from "../contexts/StateContext";
+import DeckItem from "./deck-item";
+import { useStateValue } from "../contexts/state-context";
 
 interface IProps extends INavigationProp {}
 const DeckList: FC<IProps> = props => {

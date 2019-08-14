@@ -1,7 +1,7 @@
 import React, { FC, Fragment } from "react";
 import { View, Text, ActivityIndicator } from "react-native";
 import { Colors } from "../utils/color";
-import { useAppValue } from "../contexts/AppContext";
+import { useAppValue } from "../contexts/app-context";
 
 interface IProp {}
 

@@ -10,10 +10,10 @@ import {
 } from "react-native";
 import { Colors } from "../utils/color";
 import { INavigationProp } from "../models/props.model";
-import { useStateValue } from "../contexts/StateContext";
-import { useAppValue } from "../contexts/AppContext";
-import { NavigationPages } from "../navigators/NavigationPages";
-import KeyboardView from "../hoc/KeyboardView";
+import { useStateValue } from "../contexts/state-context";
+import { useAppValue } from "../contexts/app-context";
+import { NavigationPages } from "../navigators/navigation-pages";
+import KeyboardView from "../hoc/keyboard-view";
 
 interface IProps extends INavigationProp {}
 const AddDeck: FC<IProps> = props => {

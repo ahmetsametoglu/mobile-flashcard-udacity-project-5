@@ -1,9 +1,9 @@
 import { createAppContainer, createStackNavigator } from "react-navigation";
-import TabNav from "./TabNav";
-import DeckMenu from "../screens/DeckMenu";
+import TabNav from "./tab-nav";
+import DeckMenu from "../screens/deck-menu";
 import { Colors } from "../utils/color";
-import Quiz from "../screens/Quiz";
-import AddCard from "../screens/AddCard";
+import Quiz from "../screens/quiz";
+import AddCard from "../screens/add-card";
 
 const StackNav = createStackNavigator(
   {
