@@ -4,7 +4,7 @@
 
 - The project tested on **Android**
 
-- This is my first react-native project with typescript, hooks and redux. So i had a little trouble building the state structure.
+- This is my first react-native project with **typescript**, **hooks** and **redux**. So i had a little trouble building the state structure.
 
 - I try to apply this [patterns](https://medium.com/@martin_hotell/10-typescript-pro-tips-patterns-with-or-without-react-5799488d6680)
 
