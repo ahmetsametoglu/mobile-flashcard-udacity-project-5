@@ -2,19 +2,19 @@ import { ActionType } from "./action-type";
 import { Dispatch, Reducer } from "react";
 
 //#region models
-export interface IAppState {
+export type IAppState = {
   showLoading: boolean;
   loadingText: string;
-}
+};
 
-interface IAppPayload {
+type IAppPayload = {
   loadingText: string;
-}
+};
 
-interface IAppAction {
+type IAppAction = {
   type: ActionType;
   payload?: IAppPayload;
-}
+};
 //#endregion models
 
 export class AppAction {
