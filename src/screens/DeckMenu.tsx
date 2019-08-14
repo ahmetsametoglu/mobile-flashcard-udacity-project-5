@@ -105,6 +105,7 @@ const styles = StyleSheet.create<{
   title: {
     fontSize: 40,
     marginBottom: 15,
+    textAlign: "center",
     fontWeight: "400"
   },
   description: {
