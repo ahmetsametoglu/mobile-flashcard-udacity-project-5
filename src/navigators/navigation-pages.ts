@@ -1,6 +1,6 @@
-export enum NavigationPages {
-  Home = "Home",
-  DeckMenu = "DeckMenu",
-  Quiz = "Quiz",
-  AddCard = "AddCard"
-}
+export const NavigationPages = {
+  Home: "Home",
+  DeckMenu: "DeckMenu",
+  Quiz: "Quiz",
+  AddCard: "AddCard"
+};
