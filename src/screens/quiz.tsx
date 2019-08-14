@@ -50,7 +50,7 @@ const Quiz = (props: Props) => {
       scorePercentage < 35
         ? Colors.errorColor
         : scorePercentage < 70
-        ? Colors.thirdColor
+        ? Colors.secondaryColor
         : Colors.successColor;
 
     return (
@@ -71,7 +71,7 @@ const Quiz = (props: Props) => {
         <ActionButton
           buttonText="Back to Deck"
           handleClick={_ => navigation.pop()}
-          textColor={Colors.thirdColor}
+          textColor={Colors.primaryColor}
         />
       </View>
     );

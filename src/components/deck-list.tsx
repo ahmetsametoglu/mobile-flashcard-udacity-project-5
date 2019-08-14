@@ -13,6 +13,7 @@ const DeckList = (props: Props) => {
 
   return (
     <FlatList
+      style={{ marginTop: 5 }}
       data={state.deckList.map(d => {
         return { ...d, key: d._id };
       })}

@@ -44,13 +44,11 @@ const AddCard = (props: Props) => {
       <View style={styles.container}>
         <MyInput
           labelText="question"
-          placeHolder="question"
           onValueChanged={value => setQuestion(value)}
           value={question}
         />
         <MyInput
           labelText="answer"
-          placeHolder="answer"
           onValueChanged={value => setAnswer(value)}
           value={answer}
         />
@@ -60,7 +58,7 @@ const AddCard = (props: Props) => {
           onPress={onSubmitPage}
           underlayColor={Colors.thirdColor}
         >
-          <Text style={{ color: Colors.white, fontSize: 20 }}>Submit</Text>
+          <Text style={{ color: Colors.white, fontSize: 20 }}>Create Card</Text>
         </TouchableHighlight>
       </View>
     </KeyboardView>

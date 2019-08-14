@@ -4,10 +4,10 @@ import { Input } from "react-native-elements";
 import { Colors } from "../../utils/color";
 
 type Props = {
-  placeHolder: string;
+  placeHolder?: string;
   onValueChanged: Function;
   value: string;
-  labelText: string;
+  labelText?: string;
   iconName?: string;
 };
 const MyInput = (props: Props) => {
@@ -17,6 +17,7 @@ const MyInput = (props: Props) => {
       onChangeText={value => {
         props.onValueChanged(value);
       }}
+      containerStyle={{ marginTop: 20 }}
       label={props.labelText}
       placeholder={props.placeHolder}
       errorStyle={{ color: "red" }}

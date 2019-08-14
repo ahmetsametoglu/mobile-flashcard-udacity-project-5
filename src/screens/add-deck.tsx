@@ -63,7 +63,7 @@ const AddDeck = (props: Props) => {
           onPress={onSubmitPage}
           underlayColor={Colors.thirdColor}
         >
-          <Text style={{ color: Colors.white, fontSize: 20 }}>Submit</Text>
+          <Text style={{ color: Colors.white, fontSize: 20 }}>Create Deck</Text>
         </TouchableHighlight>
       </View>
     </KeyboardView>
