@@ -6,10 +6,10 @@ import {
   initialAppState
 } from "../store/app-store";
 
-interface IAppContext {
+type IAppContext = {
   state: IAppState;
   appAction: AppAction;
-}
+};
 
 export const AppContext = createContext<IAppContext>(null);
 export const useAppValue = () => useContext(AppContext);

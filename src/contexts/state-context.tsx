@@ -6,10 +6,10 @@ import {
   DecksAction
 } from "../store/deck-store";
 
-interface IStateContext {
+type IStateContext = {
   state: IDecksState;
   deckAction: DecksAction;
-}
+};
 
 export const StateContext = createContext<IStateContext>(null);
 export const useStateValue = () => useContext(StateContext);
