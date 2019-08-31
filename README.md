@@ -1,8 +1,8 @@
 # MobileFlashCards
 
-- This project is 5th project (mobile flash-card) of [React Nanodegree program](https://www.udacity.com/course/react-nanodegree--nd019). It created according to Udacity's rubric.
+- This project is the 5th project (mobile flash-card) of [React Nanodegree program](https://www.udacity.com/course/react-nanodegree--nd019). It has been created according to Udacity's rubric.
 
-- The project tested on **Android**
+- The project has been tested on **Android**
 
 - This is my first react-native project with **typescript**, **hooks** and **redux**. So i had a little trouble building the state structure.
 
